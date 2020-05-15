@@ -10,65 +10,61 @@
   <div class="container">
     <div class="row">
       <div class="col-xs-3">
-        <h2>Table</h2>
-        <p>The .table-responsive class creates a responsive table which will scroll horizontally on small devices (under 768px). When viewing on anything larger than 768px wide, there is no difference:</p>
+        <h2>User info</h2>
+        <img src="#">
         <div class="table-responsive">
           <table class="table">
-              <thead>
-                <tr>
-                  <th>#</th>
-                  <th>Firstname</th>
-                  <th>Lastname</th>
-                  <th>Age</th>
-                  <th>City</th>
-                  <th>Country</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>1</td>
-                  <td>Anna</td>
-                  <td>Pitt</td>
-                  <td>35</td>
-                  <td>New York</td>
-                  <td>USA</td>
-                </tr>
-              </tbody>
+            <tbody>
+            <% @user.each do |user| %>
+              <tr>
+                <td>name</td>
+                <td><%= user.name %></td>
+              </tr>
+              <tr>
+                <td>intro</td>
+                <td><%= user.introduction %></td>0
+              </tr>
+            </tbody>
+            <% end %>
           </table>
+          <p><%= link_to "編集", edit_user_path %></p>
         </div>
-        <h2>Vertical (basic) form</h2>
-        <form>
-          <div class="form-group">
-            <label for="email">Email:</label>
-            <input type="email" class="form-control" id="email" placeholder="Enter email">
+
+
+        <h2>New book</h2>
+        <!-- <form> -->
+        <%= form_for (@book) do |f| %>
+            <div class="form-group">
+            <label for="title">title:</label>
+            <input type="f.title" class="form-control" id="title" placeholder="Enter title">
           </div>
           <div class="form-group">
-            <label for="pwd">Password:</label>
-            <input type="password" class="form-control" id="pwd" placeholder="Enter password">
+            <label for="pwd">opinion:</label>
+            <input type="f.body" class="form-control" id="opi" placeholder="Enter opinion">
           </div>
           <div class="checkbox">
-            <label><input type="checkbox"> Remember me</label>
           </div>
-          <button type="submit" class="btn btn-default">Submit</button>
-        </form>
+          <button type="submit" class="btn btn-default">create book</button>
+         <% end %>
+        <!-- </form> -->
         </div>
 
       <div class="col-xs-9">
+        <% @books.each do |book| %>
        <h2>Basic Table</h2>
-        <p>The .table class adds basic styling (light padding and only horizontal dividers) to a table:</p>
         <table class="table">
           <thead>
             <tr>
-              <th>Firstname</th>
-              <th>Lastname</th>
-              <th>Email</th>
+              <th>###</th>
+              <th>title</th>
+              <th>opinion</th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <td>John</td>
-              <td>Doe</td>
-              <td>john@example.com</td>
+              <td>"""</td>
+              <td><%= book.title %></td>
+              <td><%= book.body %></td>
             </tr>
             <tr>
               <td>Mary</td>
@@ -81,6 +77,7 @@
               <td>july@example.com</td>
             </tr>
           </tbody>
+          <% end %>
         </table>
       </div>
     </div>
