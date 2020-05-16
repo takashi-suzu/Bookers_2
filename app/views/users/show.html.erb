@@ -7,6 +7,8 @@
 </head>
 <body>
 
+    <%= link_to"削除",destroy_user_session_path, method: :delete %>
+
   <div class="container">
     <div class="row">
       <div class="col-xs-3">
@@ -15,21 +17,18 @@
         <div class="table-responsive">
           <table class="table">
             <tbody>
-            <% @user.each do |user| %>
               <tr>
                 <td>name</td>
-                <td><%= user.name %></td>
+                <td><%= @user.name %></td>
               </tr>
               <tr>
                 <td>intro</td>
-                <td><%= user.introduction %></td>0
+                <td><%= @user.introduction %></td>0
               </tr>
             </tbody>
-            <% end %>
           </table>
-          <p><%= link_to "編集", edit_user_path %></p>
+          <p><%= link_to "編集", edit_user_path(@user) %></p>
         </div>
-
 
         <h2>New book</h2>
         <!-- <form> -->

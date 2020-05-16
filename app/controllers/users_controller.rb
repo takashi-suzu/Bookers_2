@@ -1,11 +1,16 @@
 class UsersController < ApplicationController
+    def about
+    end
+    def new
+    	@book = Book.new
+    	render("books/new")
+    end
     def index
     end
     def show
-    	@user = User.where(id: params[:id])
     	@book = Book.new
-    	@books =Book.all(params:id)
-    	# @books = Book.find(params[:user_id])
+    	@books = current_user.books
+    	@user = User.find(params[:id])
     end
     def edit
     	# @user = User.where(id: params[:id])
@@ -18,10 +23,10 @@ class UsersController < ApplicationController
     end
 
     def create
-    	@book = Book.new(book_params)
-    	if @book.save
-	        flash[:notice] = "Book was successfully created."
-    		redirect_to book_path(@book.id)
+    	book = Book.new(book_params)
+    	if  book.save
+    		flash[:notice] = "Book was successfully created."
+    	    redirect_to user_path(user.id)
     	else
     		render("users/show")
     	end
